@@ -18,143 +18,141 @@
   it into Outlook's signature editor, and then type their own
   information over the placeholder text directly in Outlook.
 
-  The image assets (logo and icons) are also hosted in this same
-  GitHub repo and referenced by URL below.
+  IMPORTANT DESIGN NOTES:
 
-  IMPORTANT DESIGN NOTE:
-  The phone number and email address are PLAIN TEXT, not clickable
-  links. This is intentional. If we used <a href="mailto:..."> or
-  <a href="tel:..."> tags, users editing the visible text in Outlook
-  would not update the underlying href, so clicking the link would
-  send to the wrong address. The website link is the only clickable
-  link because the URL is the same for everyone.
+  1. The phone number and email address are PLAIN TEXT, not clickable
+     links. This is intentional. If we used <a href="mailto:..."> or
+     <a href="tel:..."> tags, users editing the visible text in Outlook
+     would not update the underlying href, so clicking the link would
+     send to the wrong address.
 
-  If you are maintaining this template:
-  - The placeholder text below (Jane Doe, CMCA, Property Manager,
-    phone, email) is what employees see and replace.
-  - Edit cautiously and test in multiple email clients after any
-    structural change.
-  - See the repo README.md for full guidance.
+  2. The horizontal rules use border-top and border-bottom on a real
+     content cell (the one wrapping the inner layout table) instead of
+     empty spacer rows. We tried using empty <td> cells with
+     font-size:1px and a top border to draw thin lines, but Outlook
+     auto-inserts <p> tags into empty cells using its default
+     composition font (often 12pt Aptos), which expands the spacer
+     row vertically by ~14-19px and breaks the layout. Putting the
+     borders on a cell with real content gives Outlook nothing to
+     "fix up" and keeps the spacing consistent for all users
+     regardless of their Outlook composition font settings.
+
+  See the repo README.md for full guidance.
 =============================================================
 -->
 
 <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #333333; max-width: 600px;">
 
-  <!-- Top horizontal rule -->
+  <!-- Outer content cell: holds the borders (top and bottom rules) -->
   <tr>
-    <td colspan="2" style="padding: 0 0 12px 0;">
-      <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="border-top: 2px solid #333333; font-size: 1px; line-height: 1px;">&nbsp;</td></tr></table>
-    </td>
-  </tr>
+    <td style="border-top: 2px solid #333333; border-bottom: 2px solid #333333; padding: 12px 0;">
 
-  <tr>
-    <!-- LEFT COLUMN: Logo (clickable - links to website) -->
-    <td style="vertical-align: middle; padding: 0 20px 0 0; text-align: center;" width="150">
-      <a href="https://eliteprop.com" target="_blank" style="text-decoration: none;"><img src="https://eliteprop.github.io/signature-assets/elite-logo.png" alt="Elite Properties Inc." width="130" height="130" style="display: block; margin: 0 auto; border: 0;" /></a>
-    </td>
-
-    <!-- RIGHT COLUMN: Name, Title, Contact Info -->
-    <td style="vertical-align: middle; padding: 0 0 0 20px; border-left: 2px solid #333333;">
-
+      <!-- Inner layout table: logo on left, content on right -->
       <table cellpadding="0" cellspacing="0" border="0">
-        <!-- Name (placeholder: Jane Doe, with credentials placeholder: CMCA) -->
         <tr>
-          <td style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; font-weight: bold; color: #222222; padding: 0 0 2px 0;">
-            Jane Doe<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; color: #888888;">&nbsp;&nbsp;CMCA</span>
+          <!-- LEFT COLUMN: Logo -->
+          <td style="vertical-align: middle; padding: 0 20px 0 0; text-align: center;" width="150">
+            <a href="https://eliteprop.com" target="_blank" style="text-decoration: none;"><img src="https://eliteprop.github.io/signature-assets/elite-logo.png" alt="Elite Properties Inc." width="130" height="130" style="display: block; margin: 0 auto; border: 0;" /></a>
+          </td>
+
+          <!-- RIGHT COLUMN: Name, Title, Contact Info -->
+          <td style="vertical-align: middle; padding: 0 0 0 20px; border-left: 2px solid #333333;">
+            <table cellpadding="0" cellspacing="0" border="0">
+              <!-- Name (placeholder: Jane Doe, with credentials placeholder: CMCA) -->
+              <tr>
+                <td style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 18px; font-weight: bold; color: #222222; padding: 0 0 2px 0;">
+                  Jane Doe<span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; color: #888888;">&nbsp;&nbsp;CMCA</span>
+                </td>
+              </tr>
+
+              <!-- Title (placeholder: Property Manager) -->
+              <tr>
+                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-style: italic; color: #555555; padding: 0 0 12px 0;">
+                  Property Manager
+                </td>
+              </tr>
+
+              <!-- Phone (placeholder: 262.373.1777 ext. 100) - PLAIN TEXT, no tel: link -->
+              <tr>
+                <td style="padding: 3px 0;">
+                  <table cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td style="vertical-align: middle; padding-right: 8px;" width="18">
+                      <img src="https://eliteprop.github.io/signature-assets/phone.png" alt="Phone" width="16" height="16" style="display: block; border: 0;" />
+                    </td>
+                    <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
+                      262.373.1777 ext. 100
+                    </td>
+                  </tr></table>
+                </td>
+              </tr>
+
+              <!-- Email (placeholder: jdoe@eliteprop.com) - PLAIN TEXT, no mailto: link -->
+              <tr>
+                <td style="padding: 3px 0;">
+                  <table cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td style="vertical-align: middle; padding-right: 8px;" width="18">
+                      <img src="https://eliteprop.github.io/signature-assets/email-icon.png" alt="Email" width="16" height="16" style="display: block; border: 0;" />
+                    </td>
+                    <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
+                      jdoe&#64;eliteprop.com
+                    </td>
+                  </tr></table>
+                </td>
+              </tr>
+
+              <!-- Address (do not change - same for everyone) -->
+              <tr>
+                <td style="padding: 3px 0;">
+                  <table cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td style="vertical-align: middle; padding-right: 8px;" width="18">
+                      <img src="https://eliteprop.github.io/signature-assets/address-icon.png" alt="Address" width="16" height="16" style="display: block; border: 0;" />
+                    </td>
+                    <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
+                      700 Larry Court, Waukesha, WI 53186
+                    </td>
+                  </tr></table>
+                </td>
+              </tr>
+
+              <!-- Website (do not change - same for everyone, clickable link) -->
+              <tr>
+                <td style="padding: 3px 0;">
+                  <table cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td style="vertical-align: middle; padding-right: 8px;" width="18">
+                      <img src="https://eliteprop.github.io/signature-assets/website-icon.png" alt="Website" width="16" height="16" style="display: block; border: 0;" />
+                    </td>
+                    <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
+                      <a href="https://eliteprop.com" style="color: #333333; text-decoration: none;">eliteprop.com</a>
+                    </td>
+                  </tr></table>
+                </td>
+              </tr>
+
+              <!-- Office Hours (do not change - same for everyone) -->
+              <tr>
+                <td style="padding: 3px 0;">
+                  <table cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td style="vertical-align: middle; padding-right: 8px;" width="18">
+                      <img src="https://eliteprop.github.io/signature-assets/office-hours-icon.png" alt="Hours" width="16" height="16" style="display: block; border: 0;" />
+                    </td>
+                    <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
+                      Open M-Th 9-5, F 9-12
+                    </td>
+                  </tr></table>
+                </td>
+              </tr>
+
+            </table>
           </td>
         </tr>
-
-        <!-- Title (placeholder: Property Manager) -->
-        <tr>
-          <td style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-style: italic; color: #555555; padding: 0 0 12px 0;">
-            Property Manager
-          </td>
-        </tr>
-
-        <!-- Phone (placeholder: 262.373.1777 ext. 100) - PLAIN TEXT, no tel: link -->
-        <tr>
-          <td style="padding: 3px 0;">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                <img src="https://eliteprop.github.io/signature-assets/phone.png" alt="Phone" width="16" height="16" style="display: block; border: 0;" />
-              </td>
-              <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
-                262.373.1777 ext. 100
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <!-- Email (placeholder: jdoe@eliteprop.com) - PLAIN TEXT, no mailto: link -->
-        <tr>
-          <td style="padding: 3px 0;">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                <img src="https://eliteprop.github.io/signature-assets/email-icon.png" alt="Email" width="16" height="16" style="display: block; border: 0;" />
-              </td>
-              <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
-                jdoe&#64;eliteprop.com
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <!-- Address (do not change - same for everyone) -->
-        <tr>
-          <td style="padding: 3px 0;">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                <img src="https://eliteprop.github.io/signature-assets/address-icon.png" alt="Address" width="16" height="16" style="display: block; border: 0;" />
-              </td>
-              <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
-                700 Larry Court, Waukesha, WI 53186
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <!-- Website (do not change - same for everyone, clickable link) -->
-        <tr>
-          <td style="padding: 3px 0;">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                <img src="https://eliteprop.github.io/signature-assets/website-icon.png" alt="Website" width="16" height="16" style="display: block; border: 0;" />
-              </td>
-              <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
-                <a href="https://eliteprop.com" style="color: #333333; text-decoration: none;">eliteprop.com</a>
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
-        <!-- Office Hours (do not change - same for everyone) -->
-        <tr>
-          <td style="padding: 3px 0;">
-            <table cellpadding="0" cellspacing="0" border="0"><tr>
-              <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                <img src="https://eliteprop.github.io/signature-assets/office-hours-icon.png" alt="Hours" width="16" height="16" style="display: block; border: 0;" />
-              </td>
-              <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
-                Open M-Th 9-5, F 9-12
-              </td>
-            </tr></table>
-          </td>
-        </tr>
-
       </table>
-    </td>
-  </tr>
 
-  <!-- Bottom horizontal rule -->
-  <tr>
-    <td colspan="2" style="padding: 12px 0 0 0;">
-      <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td style="border-top: 2px solid #333333; font-size: 1px; line-height: 1px;">&nbsp;</td></tr></table>
     </td>
   </tr>
 
   <!-- Tagline (do not change - AAMC accreditation) -->
   <tr>
-    <td colspan="2" style="padding: 6px 0 0 0; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-style: italic; color: #555555;">
+    <td style="padding: 6px 0 0 0; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; font-size: 12px; font-style: italic; color: #555555;">
       An Accredited Association Management Company (AAMC)
     </td>
   </tr>
