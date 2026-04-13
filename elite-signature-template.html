@@ -24,18 +24,26 @@
      links. This is intentional. If we used <a href="mailto:..."> or
      <a href="tel:..."> tags, users editing the visible text in Outlook
      would not update the underlying href, so clicking the link would
-     send to the wrong address.
+     send to the wrong address. (Outlook and Gmail will often add
+     their own clickable links at display time anyway.)
 
   2. The horizontal rules use border-top and border-bottom on a real
      content cell (the one wrapping the inner layout table) instead of
-     empty spacer rows. We tried using empty <td> cells with
-     font-size:1px and a top border to draw thin lines, but Outlook
-     auto-inserts <p> tags into empty cells using its default
-     composition font (often 12pt Aptos), which expands the spacer
-     row vertically by ~14-19px and breaks the layout. Putting the
-     borders on a cell with real content gives Outlook nothing to
-     "fix up" and keeps the spacing consistent for all users
-     regardless of their Outlook composition font settings.
+     empty spacer rows. Empty cells get wrapped in phantom <p> tags
+     by Outlook's Word HTML paste pipeline, which expands the row
+     height unexpectedly for some users.
+
+  3. The image files at the GitHub Pages URLs below are sized at
+     EXACTLY their intended display dimensions (130x130 for the logo,
+     16x16 for the icons). This is important because Gmail, when it
+     extracts and re-embeds images during reply processing, strips
+     the HTML width/height attributes and uses the source file's
+     intrinsic dimensions. Matching the intrinsic size to the display
+     size prevents images from appearing oversized in replies.
+
+  4. Images have BOTH HTML width/height attributes AND inline
+     width/height styles. This belt-and-suspenders approach improves
+     resilience against email clients that honor one or the other.
 
   See the repo README.md for full guidance.
 =============================================================
@@ -52,7 +60,7 @@
         <tr>
           <!-- LEFT COLUMN: Logo -->
           <td style="vertical-align: middle; padding: 0 20px 0 0; text-align: center;" width="150">
-            <a href="https://eliteprop.com" target="_blank" style="text-decoration: none;"><img src="https://eliteprop.github.io/signature-assets/elite-logo.png" alt="Elite Properties Inc." width="130" height="130" style="display: block; margin: 0 auto; border: 0;" /></a>
+            <a href="https://eliteprop.com" target="_blank" style="text-decoration: none;"><img src="https://eliteprop.github.io/signature-assets/elite-logo.png" alt="Elite Properties Inc." width="130" height="130" style="width: 130px; height: 130px; display: block; margin: 0 auto; border: 0;" /></a>
           </td>
 
           <!-- RIGHT COLUMN: Name, Title, Contact Info -->
@@ -77,7 +85,7 @@
                 <td style="padding: 3px 0;">
                   <table cellpadding="0" cellspacing="0" border="0"><tr>
                     <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                      <img src="https://eliteprop.github.io/signature-assets/phone.png" alt="Phone" width="16" height="16" style="display: block; border: 0;" />
+                      <img src="https://eliteprop.github.io/signature-assets/phone.png" alt="Phone" width="16" height="16" style="width: 16px; height: 16px; display: block; border: 0;" />
                     </td>
                     <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
                       262.373.1777 ext. 100
@@ -91,7 +99,7 @@
                 <td style="padding: 3px 0;">
                   <table cellpadding="0" cellspacing="0" border="0"><tr>
                     <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                      <img src="https://eliteprop.github.io/signature-assets/email-icon.png" alt="Email" width="16" height="16" style="display: block; border: 0;" />
+                      <img src="https://eliteprop.github.io/signature-assets/email-icon.png" alt="Email" width="16" height="16" style="width: 16px; height: 16px; display: block; border: 0;" />
                     </td>
                     <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
                       jdoe&#64;eliteprop.com
@@ -105,7 +113,7 @@
                 <td style="padding: 3px 0;">
                   <table cellpadding="0" cellspacing="0" border="0"><tr>
                     <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                      <img src="https://eliteprop.github.io/signature-assets/address-icon.png" alt="Address" width="16" height="16" style="display: block; border: 0;" />
+                      <img src="https://eliteprop.github.io/signature-assets/address-icon.png" alt="Address" width="16" height="16" style="width: 16px; height: 16px; display: block; border: 0;" />
                     </td>
                     <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
                       700 Larry Court, Waukesha, WI 53186
@@ -119,7 +127,7 @@
                 <td style="padding: 3px 0;">
                   <table cellpadding="0" cellspacing="0" border="0"><tr>
                     <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                      <img src="https://eliteprop.github.io/signature-assets/website-icon.png" alt="Website" width="16" height="16" style="display: block; border: 0;" />
+                      <img src="https://eliteprop.github.io/signature-assets/website-icon.png" alt="Website" width="16" height="16" style="width: 16px; height: 16px; display: block; border: 0;" />
                     </td>
                     <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
                       <a href="https://eliteprop.com" style="color: #333333; text-decoration: none;">eliteprop.com</a>
@@ -133,7 +141,7 @@
                 <td style="padding: 3px 0;">
                   <table cellpadding="0" cellspacing="0" border="0"><tr>
                     <td style="vertical-align: middle; padding-right: 8px;" width="18">
-                      <img src="https://eliteprop.github.io/signature-assets/office-hours-icon.png" alt="Hours" width="16" height="16" style="display: block; border: 0;" />
+                      <img src="https://eliteprop.github.io/signature-assets/office-hours-icon.png" alt="Hours" width="16" height="16" style="width: 16px; height: 16px; display: block; border: 0;" />
                     </td>
                     <td style="vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #333333;">
                       Open M-Th 9-5, F 9-12
